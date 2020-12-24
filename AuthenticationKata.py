@@ -11,13 +11,13 @@ class Login:
         else:
             print('Wrong Username or Password')
 
-    def validate_for_only_letters_present(p):
+class Validations:
+    def validate_for_only_letters_present_in_username(p):
         res = True if next((chr for chr in p if chr.isdigit()), None) else False
         return res 
 
     def validate_for_minimum_length_of_password(password):
             flag = 0
-        #while True:   
             if (len(password)<=6): 
                 flag = -1
             elif not re.search("[a-z]", password): 
@@ -35,11 +35,16 @@ class Login:
                 print("Not a Valid Password")
                 return False   
 
-class Register:
-    def register(self, username, password):
-        self.credentials[username] = password
-        print("UserAccount created successfully")
-
+class Registeration(Validations):
+    def create_registation(self, username, password):
+        validate_letters_in_username=Validations.validate_for_only_letters_present_in_username(username)
+        if validate_letters_in_username==True:
+            self.credentials[username] = password
+            print("UserAccount created successfully")
+            return True
+        else:
+            return False  
+        
 """
 s = Login()
 r =  Register()
