@@ -1,8 +1,4 @@
 import re
-class Initialization:
-    def __init__(self):
-        self.credentials = {}
-
 class Login:
     def check(self, user, pas):
         """print(self.credentials)"""
@@ -13,7 +9,7 @@ class Login:
 
 class Validations:
     def validate_for_only_letters_present_in_username(p):
-        res = True if next((chr for chr in p if chr.isdigit()), None) else False
+        res = False if next((chr for chr in p if chr.isdigit()), None) else True
         return res 
 
     def validate_for_minimum_length_of_password(password):
@@ -36,32 +32,37 @@ class Validations:
                 return False   
 
 class Registeration(Validations):
+    def __init__(self):
+        self.credentials = {}
+
     def create_registation(self, username, password):
         validate_letters_in_username=Validations.validate_for_only_letters_present_in_username(username)
         if validate_letters_in_username==True:
             self.credentials[username] = password
-            print("UserAccount created successfully")
+            #print("UserAccount created successfully")
             return True
         else:
+            #print("UserAccount creation failed")
             return False  
         
-"""
-s = Login()
-r =  Register()
-Stop = False
+    """def main(self):
+        s = Login()
+        r =  Registeration()
+        Stop = False
 
-while Stop == False:
-    tasks = (input('What would you like to do? enter [Register], [Login], or [quit]'))
-    # Calling functions with that class object
-    if tasks == 'Register':
-        Name = (input('Please enter username'))
-        Password = (input('Please enter password'))
-        r.register(Name, Password)
+        while Stop == False:
+            tasks = (input('What would you like to do? enter [Register], [Login], or [quit]'))
+            # Calling functions with that class object
+            if tasks == 'Register':
+                Name = (input('Please enter username'))
+                Password = (input('Please enter password'))
+                r.create_registation(Name, Password)
 
-    if tasks == 'Login':
-        LoginInfoUser = (input('Please enter Username'))
-        LoginInfoPassword = (input('Please enter Password'))
-        s.check(LoginInfoUser, LoginInfoPassword)
-    if tasks == 'quit':
-        print("See you later!")
-        Stop = True"""
+            if tasks == 'Login':
+                LoginInfoUser = (input('Please enter Username'))
+                LoginInfoPassword = (input('Please enter Password'))
+                s.check(LoginInfoUser, LoginInfoPassword)
+            if tasks == 'quit':
+                print("See you later!")
+                Stop = True
+                """
